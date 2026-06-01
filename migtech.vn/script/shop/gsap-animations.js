@@ -405,9 +405,9 @@ function initAll() {
     }
 }
 
-// Start when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAll);
-} else {
-    initAll();
-}
+// Start when components are loaded
+document.addEventListener('componentsLoaded', initAll);
+
+// Fallback just in case no components were loaded but we still want to run
+// The component loader will dispatch componentsLoaded even if there are 0 components.
+
