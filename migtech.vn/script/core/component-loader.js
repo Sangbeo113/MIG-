@@ -1,14 +1,19 @@
 /**
- * MIG Technology – Component Loader
- * Automatically fetches and injects HTML partials (e.g., Navbar, Footer)
- * using the fetch API, then dispatches an event when done so that
- * dependent scripts (like GSAP animations) can initialize safely.
+ * MIG Technology – Component Loader v2
+ * Fetches and injects HTML partials (Navbar, Footer) via fetch API.
+ * Supports pages in subdirectories via the data-base attribute.
+ *
+ * Usage:
+ *   Root-level page:    <div data-include="partials/navbar.html"></div>
+ *   Subdirectory page:  <div data-include="partials/navbar.html" data-base=".."></div>
+ *
+ * After all components are injected, fires the "componentsLoaded" event
+ * so that GSAP and other scripts can safely initialize.
  */
 
 class ComponentLoader {
     constructor() {
-        this.elements = document.querySelectorAll('[data-include]');
-        this.loadedCount = 0;
+        this.elements = Array.from(document.querySelectorAll('[data-include]'));
         this.totalCount = this.elements.length;
     }
 
@@ -18,37 +23,60 @@ class ComponentLoader {
             return;
         }
 
-        const loadPromises = Array.from(this.elements).map(async (el) => {
-            const file = el.getAttribute('data-include');
+        const loadPromises = this.elements.map(async (el) => {
+            const partialPath = el.getAttribute('data-include');
+            const base = el.getAttribute('data-base') || '';
+            const url = base ? `${base}/${partialPath}` : partialPath;
+
             try {
-                const response = await fetch(file);
+                const response = await fetch(url);
                 if (response.ok) {
-                    const content = await response.text();
-                    // Replace the placeholder div with the fetched content
-                    el.outerHTML = content;
+                    const html = await response.text();
+                    // Insert the partial and remove the placeholder
+                    el.outerHTML = html;
                 } else {
-                    console.error(`Failed to load component: ${file} (Status: ${response.status})`);
+                    console.warn(`[ComponentLoader] Failed: ${url} (${response.status})`);
+                    el.remove();
                 }
-            } catch (error) {
-                console.error(`Error fetching component ${file}:`, error);
-            } finally {
-                this.loadedCount++;
+            } catch (err) {
+                console.error(`[ComponentLoader] Error fetching ${url}:`, err);
+                el.remove();
             }
         });
 
         await Promise.all(loadPromises);
+
+        // Mark active nav link based on current page URL
+        this.markActiveNavLink();
+
         this.dispatchReadyEvent();
     }
 
+    markActiveNavLink() {
+        const currentPath = window.location.pathname;
+        // Normalize: strip trailing slash and filename
+        const currentPage = currentPath.split('/').filter(Boolean).pop() || 'index.html';
+
+        document.querySelectorAll('#desktop-menu .nav-link, #mobile-menu a').forEach((link) => {
+            const href = link.getAttribute('href') || '';
+            const linkPage = href.split('/').filter(Boolean).pop() || '';
+
+            // Mark active if the link href ends with the current page name
+            const isActive = href.includes(currentPage) ||
+                             (currentPage === 'index.html' && (href === '/' || href.endsWith('index.html')));
+
+            if (isActive) {
+                link.classList.add('active');
+                link.classList.replace('text-gray-500', 'text-gray-900');
+            }
+        });
+    }
+
     dispatchReadyEvent() {
-        // Dispatch custom event to notify that all DOM components are fully loaded
-        const event = new Event('componentsLoaded');
-        document.dispatchEvent(event);
+        document.dispatchEvent(new Event('componentsLoaded'));
     }
 }
 
-// Run the loader as early as possible
 document.addEventListener('DOMContentLoaded', () => {
-    const loader = new ComponentLoader();
-    loader.init();
+    new ComponentLoader().init();
 });
