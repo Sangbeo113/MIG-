@@ -103,7 +103,14 @@ function initHeroAnimations() {
 
 // ===== 2. SCROLL REVEAL =====
 function initScrollReveal() {
-    const revealElements = gsap.utils.toArray('.reveal');
+    // Exclude hero elements: they are handled by initHeroAnimations() timeline.
+    // Without this exclusion, initScrollReveal() would reset hero nodes to
+    // opacity:0 / y:30 AFTER the hero timeline has already animated them in,
+    // making the hero section nearly invisible (Critical Bug #1).
+    const heroExcludeIds = ['#hero-badge', '#hero-title', '#hero-subtitle', '#hero-cta', '#hero-trust'];
+    const revealElements = gsap.utils.toArray(
+        heroExcludeIds.map(id => `.reveal:not(${id})`).join(', ')
+    );
 
     revealElements.forEach((el) => {
         gsap.fromTo(el,

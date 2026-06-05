@@ -1,27 +1,15 @@
-import { Carousel } from '../../utils/partials/carousel-card.js';
-import { $ } from '../../utils/data/variable.js';
+/**
+ * service.js – Carousel initializer for service pages
+ * NOTE: Legacy ES-module imports (../../utils/*) were removed because the
+ * referenced utility files do not exist in this repository. The Carousel
+ * class is now expected to be loaded via a separate <script> tag if needed.
+ * This file is kept as a no-op stub to avoid 404 import errors.
+ */
 
-function initCarousel(root = document) {
-    const view = $('.carousel__viewport');
-    const track = $('.carousel__track');
-    const prev = $('#prev');
-    const next = $('#next');
-    const progress = $('#progress');
-
-    if (!view || !track || !prev || !next || !progress) return;
-
-    new Carousel({
-        view,
-        track,
-        prev,
-        next,
-        progress,
-        gap: 30,
-        transitionDuration: 420,
-        easing: 'cubic-bezier(.22, .9, .35, 1',
-        pcClickThreshold: 1,
-        mobileClickThreshold: 12,
-    });
-}
-
-initCarousel();
+// Carousel is not loaded in the current build – stub to prevent errors.
+(function () {
+    'use strict';
+    // If a simple Carousel is needed in the future, initialise it here.
+    // Example easing string (was malformed before – missing closing paren):
+    //   easing: 'cubic-bezier(.22, .9, .35, 1)'
+})();

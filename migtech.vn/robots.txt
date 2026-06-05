@@ -1,0 +1,27 @@
+# robots.txt – MIG Technology
+# https://migtech.vn
+
+User-agent: *
+Allow: /
+
+# Block HTTrack mirror artifacts and sensitive pages
+Disallow: /login.html
+Disallow: /index-legacy.html
+Disallow: /legacy/
+Disallow: /hts-cache/
+Disallow: /cookies.txt
+
+# Block legacy HTTrack paginated mirror artifacts (index2679.html pattern)
+Disallow: /chinh-sach/
+Disallow: /du-an/index2679.html
+Disallow: /tin-tuc/cung-ung-thiet-bi.html
+Disallow: /tin-tuc/nhap-khau-thiet-bi.html
+Disallow: /tin-tuc/thiet-ke-theo-yeu-cau.html
+Disallow: /tin-tuc/cung-ung-thiet-bi/
+Disallow: /tin-tuc/nhap-khau-thiet-bi/
+Disallow: /tin-tuc/sua-chua-thiet-bi/
+Disallow: /tin-tuc/tat-ca-bai-viet/
+Disallow: /tin-tuc/thi-cong-bao-tri-led/
+Disallow: /tin-tuc/thiet-ke-theo-yeu-cau/
+
+Sitemap: https://migtech.vn/sitemap.xml

@@ -80,3 +80,65 @@ class ComponentLoader {
 document.addEventListener('DOMContentLoaded', () => {
     new ComponentLoader().init();
 });
+
+// Lắng nghe sự kiện sau khi Component đã được nạp xong
+document.addEventListener("componentsLoaded", () => {
+    const serviceTrigger = document.getElementById('service-trigger');
+    const subnavPanel = document.getElementById('subnav-panel');
+
+    if (serviceTrigger && subnavPanel) {
+        const triggerLink = serviceTrigger.querySelector('a');
+
+        // Toggle dropdown on click/tap
+        triggerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isOpen = subnavPanel.classList.contains('is-open');
+            if (isOpen) {
+                subnavPanel.classList.remove('is-open');
+                serviceTrigger.classList.remove('is-open');
+            } else {
+                subnavPanel.classList.add('is-open');
+                serviceTrigger.classList.add('is-open');
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!serviceTrigger.contains(e.target)) {
+                subnavPanel.classList.remove('is-open');
+                serviceTrigger.classList.remove('is-open');
+            }
+        });
+    }
+
+    // Tìm tất cả các thẻ <a> bên trong Navbar và Mobile Menu
+    const navLinks = document.querySelectorAll('#navbar a, #mobile-menu a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Nếu click vào nút toggle Dịch vụ thì không xử lý đóng ở đây
+            if (serviceTrigger && serviceTrigger.querySelector('a') === link) {
+                return;
+            }
+
+            // Ép phần tử mất focus
+            document.activeElement.blur();
+            
+            // Đóng subnav desktop
+            if (subnavPanel) {
+                subnavPanel.classList.remove('is-open');
+                serviceTrigger?.classList.remove('is-open');
+            }
+
+            // Đóng mobile menu
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                document.getElementById('menu-icon-open')?.classList.remove('hidden');
+                document.getElementById('menu-icon-close')?.classList.add('hidden');
+            }
+        });
+    });
+});

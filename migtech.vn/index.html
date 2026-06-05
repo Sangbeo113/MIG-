@@ -15,7 +15,9 @@
     <meta property="og:description" content="Công ty TNHH Công Nghệ MIG chuyên cung cấp dịch vụ thi công bảo trì LED mặt dựng tòa nhà, thiết kế sản phẩm theo yêu cầu, sửa chữa thiết bị điện-điện tử." />
     <meta property="og:url" content="https://migtech.vn/" />
     <meta property="og:site_name" content="MIG Technology" />
+    <meta property="og:image" content="https://migtech.vn/uploads/images/logos/b3af1ded-48ca-497b-9b37-c8a1dcc3ab92-logo-migtech.vn-02.png" />
     <meta name="theme-color" content="#FAFAFA" />
+    <link rel="canonical" href="https://migtech.vn/" />
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
@@ -29,7 +31,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Performance: preload key above-fold assets -->
+    <link rel="preload" href="uploads/images/logos/b3af1ded-48ca-497b-9b37-c8a1dcc3ab92-logo-migtech.vn-02.png" as="image" />
+
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -210,45 +218,7 @@
             background-clip: text;
         }
 
-        /* ===== NAVBAR ACTIVE INDICATOR ===== */
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #4050e6, #7f9af8);
-            border-radius: 1px;
-            transition: all 0.3s cubic-bezier(0.22, 0.9, 0.35, 1);
-            transform: translateX(-50%);
-        }
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-        .nav-link:hover {
-            color: #4050e6;
-        }
 
-        /* ===== SUBNAV DROPDOWN ===== */
-        .subnav-dropdown {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(8px);
-            transition: all 0.3s cubic-bezier(0.22, 0.9, 0.35, 1);
-            pointer-events: none;
-        }
-        .subnav-trigger:hover .subnav-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
 
         /* ===== CTA BUTTON SHIMMER ===== */
         .btn-primary {
@@ -339,135 +309,9 @@
 <body class="font-inter">
 
     <!-- ============================================ -->
-    <!-- NAVBAR - Fixed, Glassmorphism                -->
+    <!-- NAVBAR - Dynamic Load                        -->
     <!-- ============================================ -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-[72px]">
-
-                <!-- Logo -->
-                <a href="index-new.html" class="flex items-center gap-3 group" id="nav-logo">
-                    <img
-                        src="uploads/images/logos/b3af1ded-48ca-497b-9b37-c8a1dcc3ab92-logo-migtech.vn-02.png"
-                        alt="MIG Technology Logo"
-                        class="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
-                    />
-                </a>
-
-                <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center gap-8" id="desktop-menu">
-                    <a href="index-new.html" class="nav-link text-sm font-medium text-gray-900 tracking-tight active">Trang chủ</a>
-                    <a href="gioi-thieu.html" class="nav-link text-sm font-medium text-gray-500 tracking-tight">Giới thiệu</a>
-                    <a href="du-an.html" class="nav-link text-sm font-medium text-gray-500 tracking-tight">Dự án</a>
-
-                    <!-- Dịch vụ with Subnav -->
-                    <div class="relative subnav-trigger" id="service-trigger">
-                        <a href="dich-vu/thi-cong-bao-tri-led" class="nav-link text-sm font-medium text-gray-500 tracking-tight flex items-center gap-1">
-                            Dịch vụ
-                            <svg class="w-3.5 h-3.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </a>
-                        <!-- Subnav Dropdown -->
-                        <div class="subnav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[520px]" id="subnav-panel">
-                            <div class="glass-strong rounded-2xl p-5 shadow-xl shadow-gray-200/50">
-                                <div class="grid grid-cols-2 gap-3">
-                                    <a href="dich-vu/thi-cong-bao-tri-led" class="flex items-start gap-3 p-3 rounded-xl hover:bg-mig-50/60 transition-colors duration-200 group/item">
-                                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-mig-100 to-mig-200 flex items-center justify-center flex-shrink-0">
-                                            <svg class="w-5 h-5 text-mig-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm font-medium text-gray-900 group-hover/item:text-mig-700">Thi công bảo trì LED</p>
-                                            <p class="text-xs text-gray-400 mt-0.5">Sửa chữa LED mặt dựng tòa nhà</p>
-                                        </div>
-                                    </a>
-                                    <a href="dich-vu/sua-chua-thiet-bi.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-mig-50/60 transition-colors duration-200 group/item">
-                                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center flex-shrink-0">
-                                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.21 3.06a1.001 1.001 0 01-1.45-1.06l.99-5.79-4.2-4.1a1 1 0 01.55-1.7l5.81-.85L10.5 0a1 1 0 011.8 0l2.59 5.23 5.81.85a1 1 0 01.55 1.7l-4.2 4.1.99 5.79a1.001 1.001 0 01-1.45 1.06l-5.21-3.06z"/></svg>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm font-medium text-gray-900 group-hover/item:text-mig-700">Sửa chữa thiết bị</p>
-                                            <p class="text-xs text-gray-400 mt-0.5">Điện - điện tử dân dụng & công nghiệp</p>
-                                        </div>
-                                    </a>
-                                    <a href="dich-vu/thiet-ke-theo-yeu-cau.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-mig-50/60 transition-colors duration-200 group/item">
-                                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center flex-shrink-0">
-                                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm font-medium text-gray-900 group-hover/item:text-mig-700">Thiết kế theo yêu cầu</p>
-                                            <p class="text-xs text-gray-400 mt-0.5">Sản phẩm điện tử tùy chỉnh</p>
-                                        </div>
-                                    </a>
-                                    <a href="dich-vu/cung-ung-thiet-bi.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-mig-50/60 transition-colors duration-200 group/item">
-                                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center flex-shrink-0">
-                                            <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm font-medium text-gray-900 group-hover/item:text-mig-700">Cung ứng thiết bị</p>
-                                            <p class="text-xs text-gray-400 mt-0.5">Nhập khẩu linh kiện & thiết bị</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="tin-tuc/tat-ca-bai-viet.html" class="nav-link text-sm font-medium text-gray-500 tracking-tight">Tin tức</a>
-                    <a href="lien-he.html" class="nav-link text-sm font-medium text-gray-500 tracking-tight">Liên hệ</a>
-                </div>
-
-                <!-- CTA Button -->
-                <div class="hidden lg:flex items-center gap-3">
-                    <a href="lien-he.html" class="btn-primary text-white text-sm font-medium px-5 py-2.5 rounded-xl" id="nav-cta">
-                        Liên hệ tư vấn
-                    </a>
-                </div>
-
-                <!-- Mobile Hamburger -->
-                <button class="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl hover:bg-gray-100/80 transition-colors" id="mobile-toggle" aria-label="Mở menu">
-                    <svg class="w-5 h-5 text-gray-700" id="menu-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                    <svg class="w-5 h-5 text-gray-700 hidden" id="menu-icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Panel -->
-        <div class="mobile-menu fixed top-[72px] right-0 bottom-0 w-full sm:w-80 glass-strong z-40 overflow-y-auto" id="mobile-menu">
-            <div class="p-6 space-y-2">
-                <a href="index-new.html" class="block px-4 py-3 rounded-xl text-sm font-medium text-mig-700 bg-mig-50/60">Trang chủ</a>
-                <a href="gioi-thieu.html" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100/60 transition-colors">Giới thiệu</a>
-                <a href="du-an.html" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100/60 transition-colors">Dự án</a>
-
-                <!-- Mobile Dịch vụ Accordion -->
-                <div>
-                    <button class="flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100/60 transition-colors" id="mobile-service-toggle">
-                        <span>Dịch vụ</span>
-                        <svg class="w-4 h-4 transition-transform duration-200" id="mobile-service-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="hidden pl-4 space-y-1 mt-1" id="mobile-service-submenu">
-                        <a href="dich-vu/thi-cong-bao-tri-led" class="block px-4 py-2.5 rounded-lg text-sm text-gray-500 hover:text-mig-700 hover:bg-mig-50/40 transition-colors">Thi công bảo trì LED</a>
-                        <a href="dich-vu/sua-chua-thiet-bi.html" class="block px-4 py-2.5 rounded-lg text-sm text-gray-500 hover:text-mig-700 hover:bg-mig-50/40 transition-colors">Sửa chữa thiết bị</a>
-                        <a href="dich-vu/thiet-ke-theo-yeu-cau.html" class="block px-4 py-2.5 rounded-lg text-sm text-gray-500 hover:text-mig-700 hover:bg-mig-50/40 transition-colors">Thiết kế theo yêu cầu</a>
-                        <a href="dich-vu/cung-ung-thiet-bi.html" class="block px-4 py-2.5 rounded-lg text-sm text-gray-500 hover:text-mig-700 hover:bg-mig-50/40 transition-colors">Cung ứng thiết bị</a>
-                    </div>
-                </div>
-
-                <a href="tin-tuc/tat-ca-bai-viet.html" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100/60 transition-colors">Tin tức</a>
-                <a href="lien-he.html" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100/60 transition-colors">Liên hệ</a>
-
-                <div class="pt-4 border-t border-gray-200/50">
-                    <a href="lien-he.html" class="btn-primary block text-center text-white text-sm font-medium px-5 py-3 rounded-xl">Liên hệ tư vấn</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div data-include="partials/navbar.html"></div>
 
 
     <!-- ============================================ -->
@@ -516,17 +360,17 @@
             <div class="reveal flex flex-wrap items-center justify-center gap-8 sm:gap-12 mt-16" id="hero-trust">
                 <div class="text-center">
                     <p class="stat-number text-2xl sm:text-3xl font-bold text-gray-900" data-count="50">0</p>
-                    <p class="text-xs text-gray-400 mt-1 font-medium">Dự án hoàn thành</p>
+                    <p class="text-xs text-gray-500 mt-1 font-medium">Dự án hoàn thành</p>
                 </div>
                 <div class="w-px h-8 bg-gray-200" aria-hidden="true"></div>
                 <div class="text-center">
                     <p class="stat-number text-2xl sm:text-3xl font-bold text-gray-900" data-count="30">0</p>
-                    <p class="text-xs text-gray-400 mt-1 font-medium">Khách hàng tin tưởng</p>
+                    <p class="text-xs text-gray-500 mt-1 font-medium">Khách hàng tin tưởng</p>
                 </div>
                 <div class="w-px h-8 bg-gray-200" aria-hidden="true"></div>
                 <div class="text-center">
                     <p class="stat-number text-2xl sm:text-3xl font-bold text-gray-900" data-count="4">0</p>
-                    <p class="text-xs text-gray-400 mt-1 font-medium">Năm kinh nghiệm</p>
+                    <p class="text-xs text-gray-500 mt-1 font-medium">Năm kinh nghiệm</p>
                 </div>
             </div>
         </div>
@@ -562,7 +406,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="service-grid">
 
                 <!-- Card 1 - LED -->
-                <a href="dich-vu/thi-cong-bao-tri-led" class="glass-card rounded-2xl p-6 sm:p-8 group product-card" id="service-card-1">
+                <a href="dich-vu/thi-cong-bao-tri-led/" class="glass-card rounded-2xl p-6 sm:p-8 group product-card" id="service-card-1">
                     <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-mig-100 to-mig-200 flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-2">
                         <svg class="w-7 h-7 text-mig-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
@@ -732,8 +576,8 @@
                                 <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                             </div>
                             <div>
-                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Bảo hành lâu dài</h4>
-                                <p class="text-sm text-gray-500">Cam kết bảo hành toàn bộ sản phẩm và dịch vụ với thời hạn hàng đầu thị trường.</p>
+                                <p class="text-sm font-semibold text-gray-900 mb-1">Bảo hành lâu dài</p>
+                                <p class="text-sm text-gray-600">Cam kết bảo hành toàn bộ sản phẩm và dịch vụ với thời hạn hàng đầu thị trường.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
@@ -741,8 +585,8 @@
                                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                             </div>
                             <div>
-                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Tiến độ đảm bảo</h4>
-                                <p class="text-sm text-gray-500">Hoàn thành dự án đúng tiến độ theo ý tưởng thiết kế và chất lượng đã đề ra.</p>
+                                <p class="text-sm font-semibold text-gray-900 mb-1">Tiến độ đảm bảo</p>
+                                <p class="text-sm text-gray-600">Hoàn thành dự án đúng tiến độ theo ý tưởng thiết kế và chất lượng đã đề ra.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
@@ -750,8 +594,8 @@
                                 <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                             </div>
                             <div>
-                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Hợp tác lâu dài</h4>
-                                <p class="text-sm text-gray-500">Thiết lập mối quan hệ đối tác bền vững và hỗ trợ xuyên suốt vòng đời sản phẩm.</p>
+                                <p class="text-sm font-semibold text-gray-900 mb-1">Hợp tác lâu dài</p>
+                                <p class="text-sm text-gray-600">Thiết lập mối quan hệ đối tác bền vững và hỗ trợ xuyên suốt vòng đời sản phẩm.</p>
                             </div>
                         </div>
                     </div>
@@ -928,7 +772,7 @@
 
                 <!-- Col 1: Company Info -->
                 <div class="sm:col-span-2 lg:col-span-1">
-                    <a href="index-new.html" class="inline-block mb-5">
+                    <a href="index.html" class="inline-block mb-5">
                         <img src="uploads/images/logos/b3af1ded-48ca-497b-9b37-c8a1dcc3ab92-logo-migtech.vn-02.png" alt="MIG Technology Logo" class="h-10 w-auto brightness-0 invert opacity-90" />
                     </a>
                     <p class="text-sm text-gray-400 leading-relaxed mb-5">

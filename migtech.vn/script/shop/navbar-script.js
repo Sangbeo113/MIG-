@@ -1,46 +1,15 @@
-import { $, $$ } from '../../utils/data/variable.js';
-import { hiddenNav } from '../../utils/partials/hidden-nav-when-scroll.js';
-import { ShowMenuMobile } from '../../utils/partials/nav-mobi-script.js';
-
-const navDesktop = $('.nav__desktop');
-const navMobile = $('.nav__mobile');
-
-if ($('.top-bar').offsetWidth > 991.98) {
-    navMobile.style.display = 'none';
-} else {
-    navDesktop.style.display = 'none';
-    const elm = $('.nav__mobile');
-    // navbar mobile script
-    new ShowMenuMobile(elm).init();
-}
-
-// show hide service
-if ($('.top-bar').offsetWidth > 991.98) {
-    document.addEventListener('DOMContentLoaded', function () {
-        const trigger = document.querySelector('.active__subnav');
-        const subnav = document.querySelector('.subnav');
-        const fullHeight = subnav.scrollHeight + 40;
-
-        let timeout;
-
-        const showSubnav = () => {
-            clearTimeout(timeout);
-            subnav.style.height = fullHeight + 'px';
-            subnav.style.opacity = '1';
-            subnav.style.visibility = 'visible';
-        };
-
-        const hideSubnav = () => {
-            timeout = setTimeout(() => {
-                subnav.style.opacity = '0';
-                subnav.style.visibility = 'hidden';
-                subnav.style.height = '0';
-            }, 200); // delay nhỏ để tránh mất hiệu ứng khi chuyển giữa trigger và subnav
-        };
-
-        trigger.addEventListener('mouseenter', showSubnav);
-        trigger.addEventListener('mouseleave', hideSubnav);
-        subnav.addEventListener('mouseenter', showSubnav);
-        subnav.addEventListener('mouseleave', hideSubnav);
-    });
-}
+/**
+ * navbar-script.js – LEGACY STUB
+ *
+ * The original file imported from ../../utils/data/variable.js and
+ * ../../utils/partials/ which do not exist in this repository.
+ * Those imports have been removed to prevent console errors.
+ *
+ * Navbar behaviour is now fully managed by:
+ *   - script/core/component-loader.js  (partial injection + active link)
+ *   - script/shop/gsap-animations.js  (scroll hide/show + mobile toggle)
+ */
+(function () {
+    'use strict';
+    // No-op: all navbar functionality is handled elsewhere.
+})();
